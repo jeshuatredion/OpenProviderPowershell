@@ -1,9 +1,7 @@
 name: Publish module to Powershell Gallery
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_dispatch
 jobs:
   publish:
     runs-on: ubuntu-latest
