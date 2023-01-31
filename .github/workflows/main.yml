@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+          
+      - name: print list items
+        run: ls -l /github/workspace
+
     # Publishing the module to powershell gallery        
       - name: Publish to Powershell Gallery
         uses: pcgeek86/publish-powershell-module-action@v20
