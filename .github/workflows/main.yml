@@ -12,4 +12,4 @@ jobs:
         uses: pcgeek86/publish-powershell-module-action@v20
         id: publish-module
         with:
-          NuGetApiKey: ${{ secrets.NUGETAPIKEY }} # Using the NugetAPI key set in GitHub Secrets
+          NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }} # Using the NugetAPI key set in GitHub Secrets
