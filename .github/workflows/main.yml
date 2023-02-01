@@ -14,12 +14,23 @@ jobs:
 #         with:
 #           NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }} # Using the NugetAPI key set in GitHub Secrets
 #           modulePath: /home/runner/work/OpenProviderPowershell/
-  publish:
+#   publish:
+#     needs: checkout
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Publish to Powershell Gallery
+#         uses: pcgeek86/publish-powershell-module-action@v20
+#         id: publish-module
+#         with:
+#           NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }} # Using the NugetAPI key set in GitHub Secrets
+
+  publishv2:
     needs: checkout
     runs-on: ubuntu-latest
     steps:
-      - name: Publish to Powershell Gallery
-        uses: pcgeek86/publish-powershell-module-action@v20
-        id: publish-module
+      - name: Publish PowerShell Module
+        uses: natescherer/update-powershell-metadata-action@v1
         with:
-          NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }} # Using the NugetAPI key set in GitHub Secrets
+          token: ${{ secrets.PS_GALLERY_KEY }}
+          target: gallery
+          path: src
