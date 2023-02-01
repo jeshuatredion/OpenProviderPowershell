@@ -20,6 +20,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print list items
-        shell: pwsh
         run: | 
-          Get-ChildItem /home/runner/work/OpenProviderPowershell/OpenProviderPowershell -recurse
+          ls -l /home/runner/work/OpenProviderPowershell/OpenProviderPowershell
