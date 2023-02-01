@@ -22,4 +22,4 @@ jobs:
       - name: print list items
         shell: pwsh
         run: |
-          Get-ListItem -Recurse
+          Get-ChildItem -Recurse
