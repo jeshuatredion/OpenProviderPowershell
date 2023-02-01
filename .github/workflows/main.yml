@@ -3,11 +3,10 @@ name: Publish module to Powershell Gallery
 on:
   workflow_dispatch
 jobs:
-  publish:
+  checkout:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
     # Publishing the module to powershell gallery        
 #       - name: Publish to Powershell Gallery
 #         uses: pcgeek86/publish-powershell-module-action@v20
@@ -15,11 +14,12 @@ jobs:
 #         with:
 #           NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }} # Using the NugetAPI key set in GitHub Secrets
 #           modulePath: /home/runner/work/OpenProviderPowershell/
-  get-listitem:
-    needs: publish
+  publish:
+    needs: checkout
     runs-on: ubuntu-latest
     steps:
-      - name: print list items
-        shell: pwsh
-        run: |
-          Get-ChildItem -Recurse
+      - name: Publish to Powershell Gallery
+        uses: pcgeek86/publish-powershell-module-action@v20
+        id: publish-module
+        with:
+          NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }} # Using the NugetAPI key set in GitHub Secrets
