@@ -7,15 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-          
-      - name: print list items
-        shell: pwsh
-        run: Get-ChildItem /github/workspace
 
     # Publishing the module to powershell gallery        
-      - name: Publish to Powershell Gallery
-        uses: pcgeek86/publish-powershell-module-action@v20
-        id: publish-module
-        with:
-          NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }} # Using the NugetAPI key set in GitHub Secrets
-          modulePath: /home/runner/work/OpenProviderPowershell/
+#       - name: Publish to Powershell Gallery
+#         uses: pcgeek86/publish-powershell-module-action@v20
+#         id: publish-module
+#         with:
+#           NuGetApiKey: ${{ secrets.PS_GALLERY_KEY }} # Using the NugetAPI key set in GitHub Secrets
+#           modulePath: /home/runner/work/OpenProviderPowershell/
+  get-listitem:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: print list items
+        shell: pwsh
+        run: | 
+          Get-ChildItem /home/runner/work/OpenProviderPowershell/OpenProviderPowershell -recurse
