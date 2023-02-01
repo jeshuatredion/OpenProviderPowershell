@@ -20,5 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print list items
-        run: | 
-          ls -l /home/runner/work/OpenProviderPowershell/OpenProviderPowershell
+        shell: pwsh
+        run: |
+          Get-ListItem -Recurse
